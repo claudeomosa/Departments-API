@@ -11,7 +11,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO) //PK auto generated
     private long departmentId;
     private String departmentName;
-    private String departmentAddress;
+    private String departmentSchool;
     private String departmentCode;
 
     public long getDepartmentId() {
@@ -30,12 +30,12 @@ public class Department {
         this.departmentName = departmentName;
     }
 
-    public String getDepartmentAddress() {
-        return departmentAddress;
+    public String getDepartmentSchool() {
+        return departmentSchool;
     }
 
-    public void setDepartmentAddress(String departmentAddress) {
-        this.departmentAddress = departmentAddress;
+    public void setDepartmentSchool(String departmentSchool) {
+        this.departmentSchool = departmentSchool;
     }
 
     public String getDepartmentCode() {
@@ -46,10 +46,10 @@ public class Department {
         this.departmentCode = departmentCode;
     }
 
-    public Department(long departmentId, String departmentName, String departmentAddress, String departmentCode) {
+    public Department(long departmentId, String departmentName, String departmentSchool, String departmentCode) {
         this.departmentId = departmentId;
         this.departmentName = departmentName;
-        this.departmentAddress = departmentAddress;
+        this.departmentSchool = departmentSchool;
         this.departmentCode = departmentCode;
     }
 
@@ -61,7 +61,7 @@ public class Department {
         return "Department{" +
                 "departmentId=" + departmentId +
                 ", departmentName='" + departmentName + '\'' +
-                ", departmentAddress='" + departmentAddress + '\'' +
+                ", departmentSchool='" + departmentSchool + '\'' +
                 ", departmentCode='" + departmentCode + '\'' +
                 '}';
     }
