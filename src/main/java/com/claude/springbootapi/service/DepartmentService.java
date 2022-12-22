@@ -14,7 +14,7 @@ public interface DepartmentService {
 
     public void deleteDepartmentById(Long departmentId) throws DepartmentNotFoundException;
 
-    public Department updateDepartment(Long departmentId, Department department);
+    public Department updateDepartment(Long departmentId, Department department) throws DepartmentNotFoundException;
 
     public Department fetchDepartmentByName(String departmentName);
 }

@@ -43,22 +43,27 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public Department updateDepartment(Long departmentId, Department department) {
+    public Department updateDepartment(Long departmentId, Department department) throws DepartmentNotFoundException {
 //        first find the department to be updated using the departmentId, then check that the field in the update body are not null or empty then update according to the provided body
-        Department departmentDB = departmentRepository.findById(departmentId).get();
-        if(Objects.nonNull(department.getDepartmentName()) &&
-                !"".equalsIgnoreCase(department.getDepartmentName())){
-            departmentDB.setDepartmentName(department.getDepartmentName());
+        Optional<Department> departmentDB = departmentRepository.findById(departmentId);
+        if (!departmentDB.isPresent()){
+            throw new DepartmentNotFoundException("Cannot update department with id: " + departmentId + ", Department Not Available!");
         }
-        if(Objects.nonNull(department.getDepartmentSchool()) &&
-                !"".equalsIgnoreCase(department.getDepartmentSchool())){
-            departmentDB.setDepartmentSchool(department.getDepartmentSchool());
-        }
-        if(Objects.nonNull(department.getDepartmentCode()) &&
-                !"".equalsIgnoreCase(department.getDepartmentCode())){
-            departmentDB.setDepartmentCode(department.getDepartmentCode());
-        }
-        return departmentRepository.save(departmentDB);
+
+            if (Objects.nonNull(department.getDepartmentName()) &&
+                    !"".equalsIgnoreCase(department.getDepartmentName())) {
+                departmentDB.get().setDepartmentName(department.getDepartmentName());
+            }
+            if (Objects.nonNull(department.getDepartmentSchool()) &&
+                    !"".equalsIgnoreCase(department.getDepartmentSchool())) {
+                departmentDB.get().setDepartmentSchool(department.getDepartmentSchool());
+            }
+            if (Objects.nonNull(department.getDepartmentCode()) &&
+                    !"".equalsIgnoreCase(department.getDepartmentCode())) {
+                departmentDB.get().setDepartmentCode(department.getDepartmentCode());
+            }
+
+        return departmentRepository.save(departmentDB.get());
     }
 
     @Override
