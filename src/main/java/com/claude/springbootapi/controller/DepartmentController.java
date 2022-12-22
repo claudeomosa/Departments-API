@@ -3,6 +3,8 @@ package com.claude.springbootapi.controller;
 import com.claude.springbootapi.entity.Department;
 import com.claude.springbootapi.service.DepartmentService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,15 +16,19 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
+
 //    to handle post requests
     @PostMapping("/departments")
     public Department saveDepartment(@Valid @RequestBody Department department){
+        LOGGER.info("Inside saveDepartment of DepartmentController");
         return departmentService.saveDepartment(department);
     }
 
 //    to handle get requests
     @GetMapping("/departments")
     public List<Department> fetchDepartmentList(){
+        LOGGER.info("Inside fetchDepartmentList of DepartmentController");
         return departmentService.fetchDepartmentList();
     }
 //   to handle get requests with ID in the request parameters
