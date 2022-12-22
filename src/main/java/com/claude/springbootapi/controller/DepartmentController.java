@@ -2,6 +2,7 @@ package com.claude.springbootapi.controller;
 
 import com.claude.springbootapi.entity.Department;
 import com.claude.springbootapi.service.DepartmentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class DepartmentController {
 
 //    to handle post requests
     @PostMapping("/departments")
-    public Department saveDepartment(@RequestBody Department department){
+    public Department saveDepartment(@Valid @RequestBody Department department){
         return departmentService.saveDepartment(department);
     }
 
