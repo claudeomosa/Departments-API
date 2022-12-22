@@ -1,6 +1,7 @@
 package com.claude.springbootapi.controller;
 
 import com.claude.springbootapi.entity.Department;
+import com.claude.springbootapi.error.DepartmentNotFoundException;
 import com.claude.springbootapi.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -33,7 +34,8 @@ public class DepartmentController {
     }
 //   to handle get requests with ID in the request parameters
     @GetMapping("/departments/{id}")
-    public Department fetchDepartmentById(@PathVariable("id") Long departmentId ){
+    public Department fetchDepartmentById(@PathVariable("id") Long departmentId )
+            throws DepartmentNotFoundException {
         return departmentService.fetchDepartmentById(departmentId);
     }
 
